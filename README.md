@@ -1,5 +1,5 @@
 # data_structure_in_swift
-Studying data structures using Swift language :)   
+스위프트로 자료구조 구현해보고 정리하는 레포 🍒
 
 ### A. Array   
 ### B. List   
