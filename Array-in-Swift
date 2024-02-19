@@ -1,0 +1,44 @@
+import Foundation
+
+var a1: String = "1", a2: String = "2", a3: String = "3" // 단일변수
+var arr: [String] = ["1", "2", "3"] // 1차원 배열
+var arr2: [[String]] = [["1", "2", "3"], ["11", "22", "33"], ["111", "222", "333"]] // 2차원 배열
+
+// size가 16byte인 String으로 테스트 
+print("size : \(type(of: a1)) / \(MemoryLayout.size(ofValue: a1))")
+withUnsafePointer(to: &a1) {print("a1 addr : \($0)")}
+withUnsafePointer(to: &a2) {print("a2 addr : \($0)")}
+withUnsafePointer(to: &a3) {print("a3 addr : \($0)")}
+
+
+print("====1====")
+for i in 0..<arr.count {
+    withUnsafePointer(to: &arr[i]) {
+        print("addr : \($0) / value : \($0.pointee)")
+    }
+}
+
+print("====2====")
+arr.append("4")
+for i in 0..<arr.count {
+    withUnsafePointer(to: &arr[i]) {
+        print("addr : \($0) / value : \($0.pointee)")
+    }
+}
+
+print("====3====")
+arr.removeLast()
+for i in 0..<arr.count {
+    withUnsafePointer(to: &arr[i]) {
+        print("addr : \($0) / value : \($0.pointee)" )
+    }
+}
+
+print("====4====")
+for i in 0..<arr2.count {
+    for j in 0..<arr2[i].count {
+        withUnsafePointer(to: &(arr2[i][j])) {
+            print("addr2 : \($0) / \($0.pointee)")
+        }
+    }
+}
